@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  --color-luxury-bg: #FBFAFB;
+  --color-luxury-accent: #1A1A1A;
+  --color-luxury-accent-dark: #000000;
+  --color-luxury-text: #1A1A1A;
+  --color-luxury-muted: #666666;
+  --color-luxury-border: #E5E5E5;
+  --color-luxury-white: #FFFFFF;
+}
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background-color: var(--color-luxury-bg);
+  color: var(--color-luxury-text);
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+}
+
+.luxury-shadow {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* مخفی‌سازی کامل اسکرول‌بار در تمام مرورگرها (با !important) */
+* {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE/Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, Opera */
+}
+@keyframes marqueeLoop {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
+/* ─── فونت یکان ─── */
+@font-face {
+  font-family: 'Yekan';
+  src: url('/fonts/yekan/Yekan-regular.eot');
+  src: url('/fonts/yekan/Yekan-regular.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/yekan/Yekan-regular.woff') format('woff'),
+       url('/fonts/yekan/Yekan-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Yekan';
+  src: url('/fonts/yekan/Yekan.eot');
+  src: url('/fonts/yekan/Yekan.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/yekan/Yekan.woff') format('woff'),
+       url('/fonts/yekan/Yekan.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* کلاس کمکی برای استفاده راحت‌تر */
+.font-yekan {
+  font-family: 'Yekan', sans-serif;
+}
+/* اسکرول‌بار قابل مشاهده برای باکس فونت‌ها */
+.font-scroll-container {
+  scrollbar-width: thin !important;          /* فایرفاکس */
+  scrollbar-color: #CCCCCC transparent !important;
+}
+
+.font-scroll-container::-webkit-scrollbar {
+  width: 6px !important;
+  display: block !important;
+}
+
+.font-scroll-container::-webkit-scrollbar-thumb {
+  background-color: #CCCCCC !important;
+  border-radius: 3px;
+}
+
+.font-scroll-container::-webkit-scrollbar-track {
+  background: transparent !important;
+}

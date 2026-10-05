@@ -1,0 +1,169 @@
+/* src/app/fonts.css */
+/* ─── Parastoo ─── */
+@font-face {
+  font-family: 'Parastoo';
+  src: url('/fonts/parastoo/Parastoo.eot') format('embedded-opentype');
+  src: url('/fonts/parastoo/Parastoo.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Parastoo';
+  src: url('/fonts/parastoo/Parastoo-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Parastoo';
+  src: url('/fonts/parastoo/Parastoo-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Sahel ─── */
+@font-face {
+  font-family: 'Sahel';
+  src: url('/fonts/sahel/Sahel.eot') format('embedded-opentype');
+  src: url('/fonts/sahel/Sahel.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Sahel';
+  src: url('/fonts/sahel/Sahel-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Sahel';
+  src: url('/fonts/sahel/Sahel-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Sahel';
+  src: url('/fonts/sahel/Sahel-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Samim ─── */
+@font-face {
+  font-family: 'Samim';
+  src: url('/fonts/samim/Samim.eot') format('embedded-opentype');
+  src: url('/fonts/samim/Samim.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Samim';
+  src: url('/fonts/samim/Samim-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Shabnam ─── */
+@font-face {
+  font-family: 'Shabnam';
+  src: url('/fonts/shabnam/Shabnam.eot') format('embedded-opentype');
+  src: url('/fonts/shabnam/Shabnam.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Shabnam';
+  src: url('/fonts/shabnam/Shabnam-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Shabnam';
+  src: url('/fonts/shabnam/Shabnam-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Tanha ─── */
+@font-face {
+  font-family: 'Tanha';
+  src: url('/fonts/Tanha/Tanha.eot') format('embedded-opentype');
+  src: url('/fonts/Tanha/Tanha.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Vazir ─── */
+@font-face {
+  font-family: 'Vazir';
+  src: url('/fonts/vazir/Vazir.eot') format('embedded-opentype');
+  src: url('/fonts/vazir/Vazir.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazir';
+  src: url('/fonts/vazir/Vazir-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazir';
+  src: url('/fonts/vazir/Vazir-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazir';
+  src: url('/fonts/vazir/Vazir-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazir';
+  src: url('/fonts/vazir/Vazir-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Yekan ─── */
+@font-face {
+  font-family: 'Yekan';
+  src: url('/fonts/yekan-font/Yekan.eot') format('embedded-opentype');
+  src: url('/fonts/yekan-font/Yekan.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Yekan';
+  src: url('/fonts/yekan-font/Yekan-regular.eot') format('embedded-opentype');
+  src: url('/fonts/yekan-font/Yekan-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Yekan';
+  src: url('/fonts/yekan-font/Yekan-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
