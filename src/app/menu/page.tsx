@@ -113,6 +113,29 @@ function saveCartToStorage(cartItems: CartItem[]) {
   }
 }
 
+async function signMediaUrls(restaurantId: string, urls: string[]) {
+  const unique = [...new Set(urls.filter(Boolean))];
+  if (unique.length === 0) return new Map<string, string>();
+
+  const response = await fetch("/api/media/signed-url", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ restaurantId, paths: unique }),
+  });
+  if (!response.ok) return new Map<string, string>();
+
+  const payload = await response.json();
+  return new Map<string, string>(
+    (payload.urls || [])
+      .filter((item: { path?: string; url?: string | null }) => item.path && item.url)
+      .map((item: { path: string; url: string }) => [item.path, item.url])
+  );
+}
+
+function replaceMediaUrl(url: string | null | undefined, signed: Map<string, string>) {
+  return url ? signed.get(url) || url : url;
+}
+
 function loadCartFromStorage(foods: Food[]): CartItem[] {
   if (typeof window === "undefined") return [];
   try {
@@ -235,6 +258,19 @@ const [aboutImages, setAboutImages] = useState<AboutImage[]>([]);
       return;
     }
 
+    // Public menus are available only while a valid subscription is active.
+    // The RPC returns a boolean and never exposes subscription details.
+    const { data: isActive, error: subscriptionError } = await supabase.rpc(
+      "is_restaurant_active",
+      { p_restaurant_id: data.id }
+    );
+
+    if (subscriptionError || isActive !== true) {
+      setError("این منو در حال حاضر فعال نیست");
+      setLoading(false);
+      return;
+    }
+
     setRestaurant(data);
     loadMenu(data.id);
   }
@@ -273,16 +309,32 @@ async function loadMenu(restaurantId: string) {
         .order("sort_order"),
     ]);
 
+    const mediaUrls = [
+      ...(categoriesRes.data || []).map((item) => item.image_url),
+      ...(foodsRes.data || []).map((item) => item.image_url),
+      ...(aboutRes.data ? [aboutRes.data.cover_image] : []),
+      ...(aboutImagesRes.data || []).map((item) => item.image_url),
+    ].filter((url): url is string => Boolean(url));
+    const signedMedia = await signMediaUrls(restaurantId, mediaUrls);
+
     if (categoriesRes.data) {
-      setCategories(categoriesRes.data);
-      if (categoriesRes.data.length > 0 && !selectedCategory) {
+      const signedCategories = categoriesRes.data.map((item) => ({
+        ...item,
+        image_url: replaceMediaUrl(item.image_url, signedMedia),
+      }));
+      setCategories(signedCategories);
+      if (signedCategories.length > 0 && !selectedCategory) {
         setSelectedCategory(categoriesRes.data[0].id);
       }
     }
 
     if (foodsRes.data) {
-      setFoods(foodsRes.data);
-      const savedCart = loadCartFromStorage(foodsRes.data);
+      const signedFoods = foodsRes.data.map((item) => ({
+        ...item,
+        image_url: replaceMediaUrl(item.image_url, signedMedia),
+      }));
+      setFoods(signedFoods);
+      const savedCart = loadCartFromStorage(signedFoods);
       if (savedCart.length > 0) setCart(savedCart);
     }
 
@@ -296,14 +348,19 @@ async function loadMenu(restaurantId: string) {
         short_description: aboutRes.data.short_description || "",
         story_title: aboutRes.data.story_title || "داستان ما",
         story: aboutRes.data.story || "",
-        cover_image: aboutRes.data.cover_image || "",
+        cover_image: replaceMediaUrl(aboutRes.data.cover_image, signedMedia) || "",
       });
     } else {
       setAbout(null);
     }
 
     setAboutFeatures(featuresRes.data || []);
-    setAboutImages(aboutImagesRes.data || []);
+    setAboutImages(
+      (aboutImagesRes.data || []).map((item) => ({
+        ...item,
+        image_url: replaceMediaUrl(item.image_url, signedMedia) || "",
+      }))
+    );
 
     setLoading(false);
     setIsDataReady(true);
