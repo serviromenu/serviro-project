@@ -10,7 +10,8 @@ import { EmptyFoods, EmptyCategories, EmptyWaiterCalls, EmptySearch } from "@/co
 import { compressImage } from "@/utils/compressImage";
 import CategoryRow from "./components/CategoryRow";
 import dynamic from "next/dynamic";
-import type { DragEndEvent } from "@dnd-kit/core";
+import { DndContext, closestCenter, PointerSensor, useSensor, useSensors, type DragEndEvent } from "@dnd-kit/core";
+import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 
 const FoodsList = dynamic(
   () => import("./components/FoodsList"),
@@ -267,7 +268,7 @@ interface Food {
   name: string;
   description: string;
   price: number;
-  image_url: string;
+  image_url: string | null;
   is_available: boolean;
   category_id: string;
   sort_order?: number;
@@ -287,6 +288,7 @@ interface FoodImage {
 }
 
 export default function Dashboard() {
+  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 8 } }));
   const [waiterCodeFormVisible, setWaiterCodeFormVisible] = useState(false);
   const [waiterCodeEnabled, setWaiterCodeEnabled] = useState(false);
 const [waiterCode, setWaiterCode] = useState("");
