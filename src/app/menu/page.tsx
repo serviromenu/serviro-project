@@ -235,6 +235,19 @@ const [aboutImages, setAboutImages] = useState<AboutImage[]>([]);
       return;
     }
 
+    // Public menus are available only while a valid subscription is active.
+    // The RPC returns a boolean and never exposes subscription details.
+    const { data: isActive, error: subscriptionError } = await supabase.rpc(
+      "is_restaurant_active",
+      { p_restaurant_id: data.id }
+    );
+
+    if (subscriptionError || isActive !== true) {
+      setError("این منو در حال حاضر فعال نیست");
+      setLoading(false);
+      return;
+    }
+
     setRestaurant(data);
     loadMenu(data.id);
   }
